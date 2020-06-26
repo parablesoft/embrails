@@ -6,9 +6,6 @@ This is an opinionated template repository used for creating modern web applicat
 
 Feel free to open up a pull request with any suggestions for improvement.
 
-#### Looking for 
-At [ParableSoft](https://parablesoft.com), we specialize in partnering with growing businesses to provide technical guidance and custom software solutions. 
-
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
