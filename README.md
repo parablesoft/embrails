@@ -2,7 +2,12 @@
 
 Rails + GraphQL + Ember. 
 
-This is an opinionated template repository used for creating modern web applications.
+This is an opinionated template repository used for creating modern web applications at [ParableSoft](https://parablesoft.com). 
+
+Feel free to open up a pull request with any suggestions for improvement.
+
+#### Looking for 
+At [ParableSoft](https://parablesoft.com), we specialize in partnering with growing businesses to provide technical guidance and custom software solutions. 
 
 ## Prerequisites
 
