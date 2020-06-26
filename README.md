@@ -24,9 +24,8 @@ To clone this repository:
 
 We don't include gems and node modules as part of docker-compose development build process. Instead, we prefer to utilize volumes to store gems and node_modules so that we can cache dependencies between build if we need to modify our `Gemfile` or `package.json`. 
 
-Enter into the api container to install our gems, and create our database 
-* `docker-compose run api bundle`
-* `docker-compose run api bundle exec rake db:reset`
+Enter into the api container to install our gems, and setup our database.
+* `docker-compose run api setup`
 
 Enter into the web container to install our node modules. 
 * `docker-compose run web yarn`
