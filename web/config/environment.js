@@ -1,8 +1,11 @@
 'use strict';
 
+const emberApolloClient = require("./apollo");
+
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'boilerplate',
+    podModulePrefix: 'boilerplate/src',
     environment,
     rootURL: '/',
     locationType: 'auto',
@@ -20,6 +23,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      emberApolloClient
     }
   };
 

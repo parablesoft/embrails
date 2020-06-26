@@ -1,10 +1,15 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const postcssOptions = require('./postcss.config.js')
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
+    postcssOptions,
+    emberApolloClient: {
+      keepGraphqlFileExtension: true
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
