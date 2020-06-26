@@ -9,11 +9,13 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
-# Tame logging
-gem 'lograge'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+
+# Opinionated ruby GraphQL bundle with some quality of life improvements
+gem 'stardust_rails', require: 'stardust',
+  git: "https://github.com/parablesoft/stardust_rails.git",
+  tag: "v0.3.4"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

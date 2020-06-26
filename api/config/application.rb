@@ -12,7 +12,7 @@ require "action_controller/railtie"
 # require "action_text/engine"
 # require "action_view/railtie"
 # require "action_cable/engine"
-# require "sprockets/railtie"
+require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -32,13 +32,6 @@ module Boilerplate
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.lograge.enabled = true
-
-    config.lograge.custom_options = lambda do |event|
-      {:ip => event.payload[:ip] || "127.0.0.1"}
-    end
-
-    config.log_level = ENV.fetch('LOG_LEVEL', :debug)
     config.logger = ActiveSupport::Logger.new(STDOUT)
   end
 end
