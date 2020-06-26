@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  app:
+  api:
     build:
       context: .
       dockerfile: api/Dockerfile.dev
@@ -11,7 +11,7 @@ services:
     - redis
     - mailcatcher
     volumes:
-    - .:/app
+    - ./api:/app
     - bundle-data:/bundle
     environment: 
       BUNDLE_PATH: /bundle/vendor
