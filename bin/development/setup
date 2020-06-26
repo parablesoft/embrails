@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+printf "\n== Building Development Containers =="
+docker-compose build
+
+printf "\n"
+docker-compose run api setup
+
+printf  "\n== Installing Ember Dependencies =="
+docker-compose run web yarn install

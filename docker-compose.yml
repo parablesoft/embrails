@@ -19,16 +19,16 @@ services:
     links:
     - db
     - redis
-    - mailcatcher
+    - mail
     volumes:
     - ./api:/app
     - bundle-data:/bundle
     environment: 
       BUNDLE_PATH: /bundle/vendor
-      DATABASE_URL: postgres://postgres:password@db/boilerplate_development
+      DATABASE_URL: postgres://postgres:password@db/myapp_development
       REDIS_URL: redis://redis:6379
-      MAILCATCHER_HOST: mailcatcher
-      MAILCATCHER_PORT: 25
+      MAIL_HOST: mail
+      MAIL_PORT: 1025
   db:
     image: postgres:12
     volumes:
@@ -37,13 +37,15 @@ services:
     - "5432:5432"
     environment:
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: boilerplate_development
+      POSTGRES_DB: myapp_development
   redis: 
     image: redis
-  mailcatcher: 
-    image: tophfr/mailcatcher 
+  mail: 
+    build:
+      context: .
+      dockerfile: mail/Dockerfile.dev
     ports: 
-    - "1080:80"
+    - "8025:8025"
 volumes:
   db-data:
   bundle-data:

@@ -20,20 +20,16 @@ You can use this template to create a new GitHub repository [here](https://githu
 To clone this repository: 
 * `git clone https://github.com/parablesoft/embrails.git` this repository
 * `cd embrails`
-* `docker-compose build`
+* `bin/development/setup`
 
 We don't include gems and node modules as part of docker-compose development build process. Instead, we prefer to utilize volumes to store gems and node_modules so that we can cache dependencies between build if we need to modify our `Gemfile` or `package.json`. 
-
-Enter into the api container to install our gems, and setup our database.
-* `docker-compose run api setup`
-
-Enter into the web container to install our node modules. 
-* `docker-compose run web yarn`
 
 ## Running / Development
 
 * `docker-compose up`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
+* Visit your GraphQL IDE at [http://localhost:3000/graphiql](http://localhost:3000/graphiql).
+* Visit your email inbox at [http://localhost:8025/](http://localhost:8025/). This is where emails emails will be sent from rails in development mode.
 
 ### Deploying
 
