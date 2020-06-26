@@ -1,0 +1,22 @@
+FROM ruby:2.7.1-alpine3.12
+
+RUN apk add --update \
+  vim git \
+  tzdata build-base cmake \
+  postgresql-client postgresql-dev \
+  libcurl libgcc libstdc++ libx11 glib libxrender libxext libintl libcrypto1.1 libssl1.1 \
+  # Clean up when done
+  && rm -rf /tmp/*
+
+RUN gem update --system && \
+    gem install bundler -v 2.1.4 --no-document
+
+RUN mkdir /app
+WORKDIR /app
+
+ENV RAILS_ENV development
+ENV RAILS_LOG_TO_STDOUT true
+ENV RUBYOPT '-W:no-deprecated -W:no-experimental'
+
+EXPOSE 3000
+CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]

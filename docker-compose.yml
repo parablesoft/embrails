@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: api/Dockerfile.dev
+    ports:
+    - "3000:3000"
+    links:
+    - db
+    - redis
+    - mailcatcher
+    volumes:
+    - .:/app
+    - bundle-data:/bundle
+    environment: 
+      BUNDLE_PATH: /bundle/vendor
+      DATABASE_URL: postgres://postgres:password@db/boilerplate_development
+      REDIS_URL: redis://redis:6379
+      MAILCATCHER_HOST: mailcatcher
+      MAILCATCHER_PORT: 25
+  db:
+    image: postgres:12
+    volumes:
+    - db-data:/var/lib/postgresql/data
+    ports:
+    - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: boilerplate_development
+  redis: 
+    image: redis
+  mailcatcher: 
+    image: tophfr/mailcatcher 
+    ports: 
+    - "1080:80"
+volumes:
+  db-data:
+  bundle-data:
