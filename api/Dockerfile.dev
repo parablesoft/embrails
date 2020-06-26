@@ -17,6 +17,7 @@ WORKDIR /app
 ENV RAILS_ENV development
 ENV RAILS_LOG_TO_STDOUT true
 ENV RUBYOPT '-W:no-deprecated -W:no-experimental'
+ENV PATH /app/bin:$PATH
 
 EXPOSE 3000
 CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
