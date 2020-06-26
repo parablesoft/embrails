@@ -13,7 +13,7 @@ You will need the following things properly installed on your computer.
 
 ## Getting Started
 
-You can use this template to create a new GitHub repository [here](https://github.com/parablesoft/embrails/generate`).
+You can use this template to create a new GitHub repository [here](https://github.com/parablesoft/embrails/generate).
 
 To clone this repository: 
 * `git clone https://github.com/parablesoft/embrails.git` this repository
