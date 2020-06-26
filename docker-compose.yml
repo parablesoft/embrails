@@ -1,5 +1,15 @@
 version: '3.8'
 services:
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile.dev
+    ports:
+    - "4200:4200"
+    - "35729:35729"
+    volumes:
+    - ./web:/app
+    - node-modules:/app/node_modules
   api:
     build:
       context: .
@@ -37,3 +47,4 @@ services:
 volumes:
   db-data:
   bundle-data:
+  node-modules:

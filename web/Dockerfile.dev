@@ -1,0 +1,10 @@
+FROM node:12.15-alpine
+
+RUN apk add --no-cache yarn git
+RUN yarn global add ember-cli@3.19.0
+
+RUN mkdir /app
+WORKDIR /app
+
+EXPOSE 4200
+CMD ["ember", "s"]
