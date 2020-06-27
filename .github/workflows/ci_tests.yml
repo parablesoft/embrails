@@ -15,17 +15,17 @@ jobs:
         docker-compose -f docker-compose.ci.yml run api rake 
   
   ember:
-    name: Ember Test
+    name: Ember Test & Lint
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: Run Ember Tests
       run: |
         set -e
-        docker-compose -f docker-compose.ci.yml run ember test
+        CI=true docker-compose -f docker-compose.ci.yml run web ember test
 
   linter:
-    name: Lint Code Base
+    name: RuboCop
     runs-on: ubuntu-latest
     steps:
       ##########################
@@ -41,5 +41,3 @@ jobs:
         uses: docker://github/super-linter:v2.2.0
         env:
           VALIDATE_RUBY: true
-          VALIDATE_JAVASCRIPT_ES: true
-          JAVASCRIPT_ES_CONFIG_FILE: web/.eslint.rc
