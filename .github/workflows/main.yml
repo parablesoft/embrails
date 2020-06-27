@@ -30,7 +30,7 @@ jobs:
 
     - name: Build Image
       run: |
-        docker-compose build -f docker-compose.ci.yml
+        docker-compose -f docker-compose.ci.yml build
         docker save $(docker images -q) > images.tar
         mkdir docker-cache
         split -b 2G images.tar docker-cache/x
