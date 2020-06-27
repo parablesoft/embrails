@@ -25,6 +25,7 @@ jobs:
 
     - name: Docker Buildx (build)
       run: |
+        mkdir -p /tmp/.buildx-cache &&
         docker buildx bake \
           --set *.cache-from="type=local,src=/tmp/.buildx-cache" \
           --set *.cache-to="type=local,src=/tmp/.buildx-cache"
