@@ -28,7 +28,6 @@ jobs:
         docker buildx bake \
           --set *.cache-from="type=local,src=/tmp/.buildx-cache" \
           --set *.cache-to="type=local,src=/tmp/.buildx-cache" \
-          --file ./docker-compose.yml ./
 
     - name: Install the dependencies
       run: bin/development/setup
