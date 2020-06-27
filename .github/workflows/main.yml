@@ -13,4 +13,4 @@ jobs:
     - name: Install the dependencies
       run: bin/development/setup
     - name: Run test suite
-      run: docker-compose run api rspec
+      run: docker-compose run api rake
