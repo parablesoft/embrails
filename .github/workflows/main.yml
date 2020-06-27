@@ -1,21 +1,25 @@
-name: Docker Image CI
+name: Rails & Ember CI Tests
 
 on: [push]
 
 jobs:
-
-  build:
-
+  rails:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
-
+    - name: Run Test Suite
+      run: |
+        set -e
+        docker-compose -f docker-compose.ci.yml run api rake db:test:prepare
+        docker-compose -f docker-compose.ci.yml run api rake 
+  ember:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
     - name: Build Image
       run: |
         docker-compose -f docker-compose.ci.yml build
-
-    - name: Run test suite
+    - name: Run Test Suite
       run: |
-        docker-compose -f docker-compose.ci.yml run api rake db:test:prepare
-        docker-compose -f docker-compose.ci.yml run api rake 
+        set -e
+        docker-compose -f docker-compose.ci.yml run web yarn test
