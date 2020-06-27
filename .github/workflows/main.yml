@@ -29,8 +29,8 @@ jobs:
           --set *.cache-from="type=local,src=/tmp/.buildx-cache" \
           --set *.cache-to="type=local,dest=/tmp/.buildx-cache"
 
-    - name: Install the dependencies
-      run: bin/development/setup
+    - name: Prepare CI to run tests
+      run: bin/ci/prepare
 
     - name: Run test suite
       run: docker-compose run api rake
