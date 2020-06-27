@@ -17,5 +17,5 @@ jobs:
 
     - name: Run test suite
       run: |
-        docker-compose run api rake db:test:prepare
-        docker-compose run api rake 
+        docker-compose -f docker-compose.ci.yml run api rake db:test:prepare
+        docker-compose -f docker-compose.ci.yml run api rake 
