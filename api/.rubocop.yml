@@ -1,3 +1,5 @@
+require: rubocop-rails
+
 AllCops:
   TargetRubyVersion: 2.7
   Exclude:
@@ -193,7 +195,7 @@ Style/FrozenStringLiteralComment:
     Add `# frozen_string_literal: true` to the top of the file. Frozen string
     literals will become the default in a future Ruby version, and we want to
     make sure we're ready.
-  EnforcedStyle: always
+  EnforcedStyle: never
   SupportedStyles:
     - always
     - never
@@ -256,7 +258,7 @@ Style/NonNilCheck:
   IncludeSemanticChanges: false
 
 Style/MethodCallWithArgsParentheses:
-  Enabled: true
+  Enabled: false
   IgnoreMacros: true
   IgnoredMethods:
   - require

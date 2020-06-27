@@ -14,6 +14,9 @@ jobs:
       run: docker-compose -f docker-compose.ci.yml run api rake db:test:prepare
     - name: RSpec
       run: docker-compose -f docker-compose.ci.yml run api rake 
+    - name: RuboCop
+      run: docker-compose -f docker-compose.ci.yml run api bundle exec rubocop --require rubocop-rails
+  
   
   ember:
     name: Ember Test & Lint
@@ -26,14 +29,3 @@ jobs:
       run: docker-compose -f docker-compose.ci.yml run web ember test
     - name: Lint
       run: docker-compose -f docker-compose.ci.yml run web yarn lint
-
-  linter:
-    name: RuboCop
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-      - name: Lint Code Base
-        uses: docker://github/super-linter:v2.2.0
-        env:
-          VALIDATE_RUBY: true

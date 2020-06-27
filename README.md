@@ -36,6 +36,7 @@ We don't include gems and node modules as part of docker-compose development bui
 ### Testing 
 
 * `bin/test/full`
+* To run rubocop `docker-compose run api bundle exec rubocop --require rubocop-rails`.
 * To run ember test server `docker-compose run --service-ports web ember test -s` and view the testem dashboard at [http://localhost:7357](http://localhost:7357/). 
 
 ### Deploying
