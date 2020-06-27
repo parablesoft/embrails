@@ -1,6 +1,6 @@
 # EmbRails - A Modern Stack Template
 
-![Rails & Ember CI Tests](https://github.com/parablesoft/embrails/workflows/Rails%20&%20Ember%20CI%20Tests/badge.svg?event=push)
+![Rails & Ember CI Tests](https://github.com/parablesoft/embrails/workflows/Rails%20&%20Ember%20CI%20Tests/badge.svg?branch=master&event=push)
 
 Rails + GraphQL + Ember. 
 

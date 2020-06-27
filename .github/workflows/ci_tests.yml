@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   rails:
+    name: Rails Test (RSpec)
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -12,11 +13,33 @@ jobs:
         set -e
         docker-compose -f docker-compose.ci.yml run api rake db:test:prepare
         docker-compose -f docker-compose.ci.yml run api rake 
+  
   ember:
+    name: Ember Test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: Run Ember Tests
       run: |
         set -e
-        docker-compose -f docker-compose.ci.yml run web yarn test
+        docker-compose -f docker-compose.ci.yml run ember test
+
+  linter:
+    name: Lint Code Base
+    runs-on: ubuntu-latest
+    steps:
+      ##########################
+      # Checkout the code base #
+      ##########################
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      ################################
+      # Run Linter against code base #
+      ################################
+      - name: Lint Code Base
+        uses: docker://github/super-linter:v2.2.0
+        env:
+          VALIDATE_RUBY: true
+          VALIDATE_JAVASCRIPT_ES: true
+          JAVASCRIPT_ES_CONFIG_FILE: web/.eslint.rc
