@@ -11,19 +11,27 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Cache docker layers
+    - name: Set up Docker Buildx
+      uses: crazy-max/ghaction-docker-buildx@v2
+
+    - name: Cache Docker layers
       uses: actions/cache@v2
-      env:
-        cache-name: cache-docker
+      id: cache
       with:
-        path: /var/lib/docker
-        key: ${{ runner.os }}-build-${{ env.cache-name }}
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}
-          ${{ runner.os }}-build-
-          ${{ runner.os }}-
+          ${{ runner.os }}-buildx-
+
+    - name: Docker Buildx (build)
+      run: |
+        docker buildx build \
+          --cache-from "type=local,src=/tmp/.buildx-cache" \
+          --cache-to "type=local,dest=/tmp/.buildx-cache" \
+          --file ./docker-compoe.yml ./
 
     - name: Install the dependencies
       run: bin/development/setup
+
     - name: Run test suite
       run: docker-compose run api rake
