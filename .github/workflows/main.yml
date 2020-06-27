@@ -11,29 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Cache Docker layers
-      uses: actions/cache@v2
-      id: cache
-      with:
-        path: docker-cache
-        key: ${{ runner.os }}-docker-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-docker-
-
-    - name: Load cached Docker layers
-      run: |
-        if [ -d "docker-cache" ]; then
-          cat docker-cache/x* > images.tar
-          docker load < images.tar
-          rm -rf docker-cache
-        fi
-
     - name: Build Image
       run: |
         docker-compose -f docker-compose.ci.yml build
-        docker save $(docker images -q) > images.tar
-        mkdir docker-cache
-        split -b 2G images.tar docker-cache/x
 
     - name: Run test suite
       run: |
