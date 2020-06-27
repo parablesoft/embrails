@@ -8,35 +8,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Run Test Suite
-      run: |
-        set -e
-        docker-compose -f docker-compose.ci.yml run api rake db:test:prepare
-        docker-compose -f docker-compose.ci.yml run api rake 
+    - name: Build
+      build: docker-compose -f docker-compose.ci.yml build api
+    - name: Prepare
+      build: docker-compose -f docker-compose.ci.yml run api rake db:test:prepare
+    - name: RSpec
+      run: docker-compose -f docker-compose.ci.yml run api rake 
   
   ember:
     name: Ember Test & Lint
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Run Ember Tests
-      run: |
-        set -e
-        CI=true docker-compose -f docker-compose.ci.yml run web ember test
+    - name: Build
+      run: docker-compose -f docker-compose.ci.yml build web 
+    - name: QUnit
+      run: docker-compose -f docker-compose.ci.yml run web ember test
+    - name: Lint
+      run: docker-compose -f docker-compose.ci.yml run web yarn lint
 
   linter:
     name: RuboCop
     runs-on: ubuntu-latest
     steps:
-      ##########################
-      # Checkout the code base #
-      ##########################
       - name: Checkout Code
         uses: actions/checkout@v2
-
-      ################################
-      # Run Linter against code base #
-      ################################
       - name: Lint Code Base
         uses: docker://github/super-linter:v2.2.0
         env:
