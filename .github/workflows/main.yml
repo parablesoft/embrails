@@ -26,8 +26,8 @@ jobs:
     - name: Docker Buildx (build)
       run: |
         docker buildx bake \
-          --set target.cache-from="type=local,src=/tmp/.buildx-cache" \
-          --set target.cache-to="type=local,src=/tmp/.buildx-cache" \
+          --set *.cache-from="type=local,src=/tmp/.buildx-cache" \
+          --set *.cache-to="type=local,src=/tmp/.buildx-cache" \
           --file ./docker-compose.yml ./
 
     - name: Install the dependencies
