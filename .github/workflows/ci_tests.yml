@@ -9,9 +9,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build
-      build: docker-compose -f docker-compose.ci.yml build api
+      run: docker-compose -f docker-compose.ci.yml build api
     - name: Prepare
-      build: docker-compose -f docker-compose.ci.yml run api rake db:test:prepare
+      run: docker-compose -f docker-compose.ci.yml run api rake db:test:prepare
     - name: RSpec
       run: docker-compose -f docker-compose.ci.yml run api rake 
   
