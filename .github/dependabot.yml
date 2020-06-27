@@ -5,12 +5,12 @@
 
 version: 2
 updates:
-  - package_manager: "ruby"
+  - package-ecosystem: "ruby"
     directory: "/api"
     schedule:
       interval: "daily"
   
-  - package_manager: "npm"
+  - package-ecosystem: "npm"
     directory: "/web"
     schedule:
       interval: "daily"
