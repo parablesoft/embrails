@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+printf "\n== Running Rails Tests =="
+docker-compose -f docker-compose.ci.yml build
+
+printf "\n== Running Rails Tests =="
+docker-compose -f docker-compose.ci.yml run api rake db:test:prepare
+docker-compose -f docker-compose.ci.yml run api rake 
+
+printf "\n== Running Ember Linters =="
+docker-compose run web yarn test

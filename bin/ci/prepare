@@ -1,8 +1,0 @@
-#!/bin/bash
-set -e
-
-printf "\n"
-docker-compose run api setup
-
-printf  "\n== Installing Ember Dependencies =="
-docker-compose run web yarn install
