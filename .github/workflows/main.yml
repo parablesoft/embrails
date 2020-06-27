@@ -16,10 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Build Image
-      run: |
-        docker-compose -f docker-compose.ci.yml build
-    - name: Run Test Suite
+    - name: Run Ember Tests
       run: |
         set -e
         docker-compose -f docker-compose.ci.yml run web yarn test
