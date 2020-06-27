@@ -11,31 +11,31 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Set up Docker Buildx
-      uses: crazy-max/ghaction-docker-buildx@v2
-
     - name: Cache Docker layers
       uses: actions/cache@v2
       id: cache
       with:
-        path: |
-          ~/caches/images.tar
-        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        path: docker-cache
+        key: ${{ runner.os }}-docker-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-buildx-
+          ${{ runner.os }}-docker-
 
-    - name: Load Images
+    - name: Load cached Docker layers
       run: |
-        set +o pipefail
-        docker load -i ~/caches/images.tar | true
+        if [ -d "docker-cache" ]; then
+          cat docker-cache/x* > images.tar
+          docker load < images.tar
+          rm -rf docker-cache
+        fi
 
-    - name: Prepare CI to run tests
-      run: bin/ci/prepare
-
-    - name: Save Images
+    - name: Build Image
       run: |
-        mkdir -p ~/caches
-        docker save $(docker images -q) -o ~/caches/images.tar
+        docker-compose build -f docker-compose.ci.yml
+        docker save $(docker images -q) > images.tar
+        mkdir docker-cache
+        split -b 2G images.tar docker-cache/x
 
     - name: Run test suite
-      run: docker-compose run api rake
+      run: |
+        docker-compose run api rake db:test:prepare
+        docker-compose run api rake 
