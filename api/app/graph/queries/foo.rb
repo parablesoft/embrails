@@ -1,5 +1,6 @@
-Stardust::GraphQL.define_query :item do
+# frozen_string_literal: true
 
+Stardust::GraphQL.define_query :item do
   description "Get a specific item"
   type :item
   null true
@@ -7,25 +8,25 @@ Stardust::GraphQL.define_query :item do
   argument :id, :integer, required: true
 
   def resolve(id:)
-    items.select{|i| i[:id] == id}.first
+    items.select { |i| i[:id] == id }.first
   end
 
-  private 
+  private
 
   def items
     [
       {
         id: 1,
-        name: "foo"
+        name: "foo",
       },
       {
         id: 2,
-        name: "bar"
+        name: "bar",
       },
       {
         id: 3,
-        name: "baz"
-      }
+        name: "baz",
+      },
     ]
   end
 end

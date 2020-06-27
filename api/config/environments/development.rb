@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -20,7 +22,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      'Cache-Control' => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -54,6 +56,6 @@ Rails.application.configure do
 
   ActionMailer::Base.smtp_settings = {
     address: ENV["MAIL_HOST"] || "localhost",
-    port: ENV["MAIL_PORT"] || "1025"
+    port: ENV["MAIL_PORT"] || "1025",
   }
 end

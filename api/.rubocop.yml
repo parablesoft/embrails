@@ -4,6 +4,7 @@ AllCops:
   TargetRubyVersion: 2.7
   Exclude:
   - 'db/schema.rb'
+  - 'bin/*'
   DisabledByDefault: true
   DisplayCopNames: true
   StyleGuideBaseURL: https://shopify.github.io/ruby-style-guide/
@@ -146,6 +147,7 @@ Layout/EmptyLinesAroundBlockBody:
   - no_empty_lines
 
 Layout/EmptyLinesAroundClassBody:
+  Enabled: false
   EnforcedStyle: no_empty_lines
   SupportedStyles:
   - empty_lines
@@ -153,6 +155,7 @@ Layout/EmptyLinesAroundClassBody:
   - no_empty_lines
 
 Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
   EnforcedStyle: no_empty_lines
   SupportedStyles:
   - empty_lines
@@ -195,7 +198,7 @@ Style/FrozenStringLiteralComment:
     Add `# frozen_string_literal: true` to the top of the file. Frozen string
     literals will become the default in a future Ruby version, and we want to
     make sure we're ready.
-  EnforcedStyle: never
+  EnforcedStyle: always
   SupportedStyles:
     - always
     - never
