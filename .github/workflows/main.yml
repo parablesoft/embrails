@@ -18,19 +18,24 @@ jobs:
       uses: actions/cache@v2
       id: cache
       with:
-        path: /tmp/.buildx-cache
+        path: |
+          ~/caches/images.tar
         key: ${{ runner.os }}-buildx-${{ github.sha }}
         restore-keys: |
           ${{ runner.os }}-buildx-
 
-    - name: Docker Buildx (build)
+    - name: Load Images
       run: |
-        docker buildx bake \
-          --set *.cache-from="type=local,src=/tmp/.buildx-cache" \
-          --set *.cache-to="type=local,dest=/tmp/.buildx-cache"
+        set +o pipefail
+        docker load -i ~/caches/images.tar | true
 
     - name: Prepare CI to run tests
       run: bin/ci/prepare
+
+    - name: Save Images
+      run: |
+        mkdir -p ~/caches
+        docker save $(docker images -q) -o ~/caches/images.tar
 
     - name: Run test suite
       run: docker-compose run api rake
