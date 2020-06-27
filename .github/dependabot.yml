@@ -7,11 +7,13 @@ version: 2
 updates:
   - package_manager: "ruby"
     directory: "/api"
-    update_schedule: "daily"
+    schedule:
+      interval: "daily"
   
   - package_manager: "npm"
     directory: "/web"
-    update_schedule: "daily"
+    schedule:
+      interval: "daily"
     
   - package-ecosystem: "docker"
     directory: "/"
