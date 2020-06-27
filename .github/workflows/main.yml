@@ -25,7 +25,7 @@ jobs:
 
     - name: Docker Buildx (build)
       run: |
-        docker buildx build \
+        docker buildx bake \
           --cache-from "type=local,src=/tmp/.buildx-cache" \
           --cache-to "type=local,dest=/tmp/.buildx-cache" \
           --file ./docker-compose.yml ./
