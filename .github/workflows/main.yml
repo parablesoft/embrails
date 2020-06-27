@@ -10,6 +10,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
+    - name: Cache docker layers
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-docker
+      with:
+        path: /var/lib/docker
+        key: ${{ runner.os }}-build-${{ env.cache-name }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+
     - name: Install the dependencies
       run: bin/development/setup
     - name: Run test suite
