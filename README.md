@@ -36,8 +36,20 @@ We don't include gems and node modules as part of docker-compose development bui
 ### Testing 
 
 * `bin/test/full`
+* To run RSpec `docker-compose run`
 * To run rubocop `docker-compose run api bundle exec rubocop --require rubocop-rails`.
 * To run ember test server `docker-compose run --service-ports web ember test -s` and view the testem dashboard at [http://localhost:7357](http://localhost:7357/). 
+
+### Quality of Life 
+
+Typing out `docker-compose` each time can get old quick, we like to bind that to the command `dc`. Add an alias in your `.bashrc` file: 
+```  
+echo "alias dc=\"docker-compose\"" >> ~/.bashrc
+source ~/.bashrc
+```
+
+You can now use `dc` in place of anywhere you see `docker-compose` above.
+
 
 ### Deploying
 
