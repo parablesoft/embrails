@@ -40,9 +40,9 @@ export default class ExtendedApolloService extends ApolloService {
     });
 
     const authLink = setContext(() => {
-      const { token } = this.get('session.data.authenticated');
       let headers = {}
-      if (token) {
+      if (this.session.isAuthenticated) {        
+        const { token } = this.session.data.authenticated
         headers["Authorization"] = `Bearer ${token}`
       }
       return { headers }

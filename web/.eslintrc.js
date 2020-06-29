@@ -32,7 +32,9 @@ module.exports = {
         'blueprints/*/index.js',
         'config/**/*.js',
         'lib/*/index.js',
-        'server/**/*.js'
+        'server/**/*.js', 
+        'postcss.config.js', 
+        'tailwind.config.js'
       ],
       parserOptions: {
         sourceType: 'script'
