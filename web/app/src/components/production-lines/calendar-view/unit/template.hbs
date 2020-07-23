@@ -1,0 +1,43 @@
+<div class="border-b border-gray-800 pb-2 mb-2">
+	<div class="rounded bg-gray-200 p-2">
+		<div class="flex justify-between">
+			<div class="text-sm">
+				PO: {{poNumber}}
+			</div>
+			<div class="bg-blue-800 text-white rounded text-xs p-1">
+				1 of 1
+			</div>
+		</div>
+		<div class='text-center text-sm font-semibold border-t border-b border-grey-900 py-2 my-2'>
+			{{#if (eq @status "In Process")}}
+			{{#if (lt @index 3)}}
+				{{@status}}
+			{{else}}
+			Pending
+			{{/if}}
+			{{/if}}
+			{{#if (not (eq @status "In Process"))}}
+			{{@status}}
+			{{/if}}
+		</div>
+		{{#if (and @showStations (eq @status "In Process") (lt @index 3))}}
+		<div class='mt-1 flex text-sm'>
+			<div class="bg-yellow-100 w-8 p-1 mr-1 text-center">
+				HC
+			</div>
+			<div class="bg-green-600 text-white w-8 p-1 mr-1 text-center">
+				RC
+			</div>
+			<div class="bg-red-500 w-8 p-1 mr-1 text-center">
+				FC
+			</div>
+			<div class="bg-red-500 w-8 p-1 mr-1 text-center">
+				FA
+			</div>
+			<div class="bg-gray-400 w-8 p-1 mr-1 text-center">
+				FA
+			</div>
+		</div>
+		{{/if}}
+	</div>
+</div>
