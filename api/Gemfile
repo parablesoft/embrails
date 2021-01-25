@@ -17,7 +17,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Opinionated ruby GraphQL bundle with some quality of life improvements
 gem 'stardust_rails', require: 'stardust',
   git: "https://github.com/parablesoft/stardust_rails.git",
-  tag: "v0.3.4"
+  tag: "v0.3.5"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
