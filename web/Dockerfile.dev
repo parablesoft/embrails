@@ -1,4 +1,4 @@
-FROM node:15.6.0-alpine
+FROM node:16.11.1-alpine
 
 RUN apk add --no-cache yarn git
 RUN yarn global add ember-cli@3.19.0
